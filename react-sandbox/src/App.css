@@ -1,0 +1,112 @@
+.hidden {
+  display: none;
+}
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.App-pancake {
+  font-size: large;
+  margin-bottom: 3px;
+}
+
+.App-pancake-message {
+  font-size: 1em;  
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-variant: small-caps;
+  margin-top: 5px;
+}
+
+.puke {
+  color: #70c220;
+  background-color: #8b4513;
+  margin-top: -.35em;
+  padding: .05em;
+  position: absolute;
+  -ms-transform: rotate(7deg); /* IE 9 */
+  -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+  transform: rotate(7deg);
+  animation: pancake-Puke infinite .5s linear;
+  
+}
+
+.App-pancake-legendary-button {
+  animation: App-pancake-legendary-button-glow infinite 2s linear;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.legendary-background {  
+  background-image: url('http://placekitten.com/g/800/800');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: 150px;
+  animation: legendary-background-animation infinite 5s linear;
+  color: white;
+}
+
+.blink {
+  display: block;
+  position: absolute;
+  font-weight: bold;
+  text-shadow: 0 0 5px #000;
+}
+
+@keyframes App-pancake-legendary-button-glow {
+  0% { 
+    background: #ffe075; 
+    font-size: 1.2em;   
+  }
+  50% {
+    background: #e8c13e; 
+    font-size: 1.3em;
+  }
+  100% { 
+    background: #ffe075; 
+    font-size: 1.2em;
+  }
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pancake-Puke {
+  0%{ font-size: 1em; transform: rotate(0deg);}
+  33%{font-size: 1.2em; transform: rotate(-3deg);}
+  66%{font-size: 1.2em; transform: rotate(3deg);}
+  100%{font-size:1em; transform: rotate(0deg);}
+}
+
+@keyframes legendary-background-animation {
+  0%{ background-color: #000;
+  background-image: url('http://placekitten.com/g/800/800');}
+  25%{ background-color: #F00;
+  background-image: url('http://placekitten.com/g/400/800');}  
+  50%{ background-color: #0F0;
+  background-image: url('http://placekitten.com/g/800/400');}
+  75%{ background-color: #00F;
+  background-image: url('http://placekitten.com/g/400/200');}
+  100%{ background-color: #000;
+  background-image: url('http://placekitten.com/g/800/800');}
+}
