@@ -71,6 +71,31 @@
   text-shadow: 0 0 5px #000;
 }
 
+.map-history {
+  width: 600px;
+  margin: auto;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.map-history-link {
+  color: #202020;
+  cursor: pointer;
+  transition: color linear .21s;
+  margin-right: 5px;
+}
+.map-history-link::after{
+  content: ' |';
+  color: #ddd;
+}
+.map-history-link:last-of-type:after{
+  content: '';
+}
+.map-history-link:hover {
+  color: #2040FF;
+  transition: color linear .21s;
+}
+
 @keyframes App-pancake-legendary-button-glow {
   0% { 
     background: #ffe075; 

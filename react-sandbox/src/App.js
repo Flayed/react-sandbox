@@ -5,6 +5,7 @@ import PancakePlate from './components/PancakePlate';
 import Header from './components/Header';
 import Intro from './components/Intro';
 import LegendaryButton from './components/LegendaryButton';
+import MapSearch from './components/MapSearch';
 import './App.css';
 
 const mapStateToProps = (state) => {
@@ -17,6 +18,7 @@ const app = ({isLegendary}) => {
     <div className={appClassName}>
       <Header />
       <Intro />
+      <MapSearch />
       <PancakePlate />
       <LegendaryButton />
       <Blinkers />
