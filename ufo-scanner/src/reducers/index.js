@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
-import query from './query'
+import query from './query';
+import cityStates from './cityStates';
 
-export default combineReducers(query);
+export default combineReducers({query, cityStates});

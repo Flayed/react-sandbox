@@ -10,7 +10,7 @@ namespace Ufo.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "The Truth Is Out There";
 
             return View();
         }

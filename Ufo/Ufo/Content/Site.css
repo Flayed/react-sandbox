@@ -1,17 +1,16 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    margin: 20px;
+    background: black;
+    background-image: url('http://i3.kym-cdn.com/photos/images/newsfeed/000/283/235/7e3.jpg');
+    -ms-background-position: center;
+    background-position: center;
+    -ms-background-attachment: fixed;
+    background-attachment: fixed;
+    -ms-background-repeat: no-repeat;
+    background-repeat: no-repeat;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.container {
+    background: #CCC;  
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}

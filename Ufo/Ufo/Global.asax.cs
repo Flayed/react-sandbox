@@ -35,6 +35,8 @@ namespace Ufo
 
             builder.RegisterType<UfoRepository>().As<IUfoRepository>();
             builder.RegisterType<UfoService>().As<IUfoService>();
+            builder.RegisterType<FileService>().As<IFileService>();
+            builder.RegisterType<JsonSerializationService>().As<IJsonSerializationService>();
 
             // Build container
             var container = builder.Build();

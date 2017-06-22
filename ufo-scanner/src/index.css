@@ -2,4 +2,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color: whitesmoke;
+    background: black;
+  background-image: url('http://i3.kym-cdn.com/photos/images/newsfeed/000/283/235/7e3.jpg');
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }

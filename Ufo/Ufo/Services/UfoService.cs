@@ -10,11 +10,11 @@ namespace Ufo.Services
 {
     public interface IUfoService
     {
-        Task<IEnumerable<MissingPerson>> GetMissingPersons();
-        Task<IEnumerable<MissingPerson>> GetMissingPersonsForCityState(string cityState);
-        Task<IEnumerable<MissingPerson>> GetMissingPersonsForCity(string city, string cityState = null);
-        Task<List<string>> GetMissingPersonCityStates();
-        Task<List<string>> GetMissingPersonCities(string cityState = null);
+        IEnumerable<MissingPerson> GetMissingPersons();
+        IEnumerable<MissingPerson> GetMissingPersonsForCityState(string cityState);
+        IEnumerable<MissingPerson> GetMissingPersonsForCity(string city, string cityState = null);
+        IEnumerable<string> GetMissingPersonCityStates();
+        IEnumerable<string> GetMissingPersonCities(string cityState = null);
     }
 
     public class UfoService : IUfoService
@@ -26,35 +26,29 @@ namespace Ufo.Services
             _ufoRepository = ufoRepository;
         }
 
-        public async Task<IEnumerable<MissingPerson>> GetMissingPersons()
+        public IEnumerable<MissingPerson> GetMissingPersons()
         {
-            var missingPersons = await _ufoRepository.GetMissingPersons().ConfigureAwait(false);
-            return missingPersons.Select(mp => new MissingPerson(mp));
+            return _ufoRepository.GetMissingPersons();
         }
 
-        public async Task<IEnumerable<MissingPerson>> GetMissingPersonsForCityState(string cityState)
+        public IEnumerable<MissingPerson> GetMissingPersonsForCityState(string cityState)
         {
-            var missingPersons = await _ufoRepository.GetMissingPersonsForCityState(cityState).ConfigureAwait(false);
-            return missingPersons.Select(mp => new MissingPerson(mp));
+            return _ufoRepository.GetMissingPersonsForCityState(cityState);
         }
 
-        public async Task<IEnumerable<MissingPerson>> GetMissingPersonsForCity(string city, string cityState = null)
+        public IEnumerable<MissingPerson> GetMissingPersonsForCity(string city, string cityState = null)
         {
-            var missingPersons = await _ufoRepository.GetMissingPersonsForCity(city, cityState).ConfigureAwait(false);
-            return missingPersons.Select(mp => new MissingPerson(mp));
+            return _ufoRepository.GetMissingPersonsForCity(city, cityState);
         }
 
-        public async Task<List<string>> GetMissingPersonCityStates()
+        public IEnumerable<string> GetMissingPersonCityStates()
         {
-            var cityStates = await _ufoRepository.GetMissingPersonsCityStates().ConfigureAwait(false);
-            return cityStates;
-
+            return _ufoRepository.GetMissingPersonsCityStates();
         }
         
-        public async Task<List<string>> GetMissingPersonCities(string cityState = null)
+        public IEnumerable<string> GetMissingPersonCities(string cityState = null)
         {
-            var cities = await _ufoRepository.GetMissingPersonsCity(cityState).ConfigureAwait(false);
-            return cities;
+            return _ufoRepository.GetMissingPersonsCity(cityState);
         }
     }
 }
