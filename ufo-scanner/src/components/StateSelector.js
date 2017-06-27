@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const stateSelector = ({states, onFetchCities, onFetchAbductions, onSelectState}) => {
-    if (states.length > 0) {
+    if (states !== undefined && states.length > 0) {
         return ( 
             <div className="app-state-selector">
                 <span>Select State:</span>

@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 import {types as cityStateTypes} from './cityStates';
 
 const ufoService = "http://thetruthisoutthere.azurewebsites.net/API/Ufo/";
+//const ufoService = "http://localhost/Ufo/API/Ufo/";
 
 export const types = {
     SEARCH: 'QUERY/SEARCH',
@@ -79,11 +80,11 @@ export function fetchAbductions(cityState, city) {
         if (city && city.length > 0) qs += '/' + city.trim();
         dispatch({type: types.REQUEST_ABDUCTIONS, cityState: cityState, city: city});
         return fetch(ufoService + 'MissingPersons' + qs + '/')
-        .then(response => {
+        .then(response => {            
             return response.json();
         },
         error => console.log('oh, no!', error)
-        ).then(json => {
+        ).then(json => {            
             dispatch({type: types.RECEIVE_ABDUCTIONS, abductions: json});
         })
     };

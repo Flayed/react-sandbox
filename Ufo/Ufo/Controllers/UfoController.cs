@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Results;
@@ -11,7 +8,7 @@ using Ufo.Services;
 
 namespace Ufo.Controllers
 {
-    [System.Web.Http.RoutePrefix("API/Ufo"), EnableCors(origins: "http://abductions.azurewebsites.net", headers:"*", methods:"*")]
+    [RoutePrefix("API/Ufo"), EnableCors(origins: "*", headers:"*", methods:"*")]
     public class UfoController : ApiController
     {
         private readonly IUfoService _ufoService;
@@ -21,40 +18,40 @@ namespace Ufo.Controllers
             _ufoService = ufoService;
         }
 
-        [System.Web.Http.HttpGet, System.Web.Http.Route("MissingPersonStates")]
-        public IEnumerable<string> GetMissingPersonStates()
+        [HttpGet, Route("MissingPersonStates")]
+        public Task<IEnumerable<string>> GetMissingPersonStates()
         {
             return _ufoService.GetMissingPersonCityStates();
         }
 
-        [System.Web.Http.HttpGet, System.Web.Http.Route("MissingPersonCities")]
-        public IEnumerable<string> GetMissingPersonCities()
+        [HttpGet, Route("MissingPersonCities")]
+        public Task<IEnumerable<string>> GetMissingPersonCities()
         {
             return _ufoService.GetMissingPersonCities();
         }
 
-        [System.Web.Http.HttpGet, System.Web.Http.Route("MissingPersonCities/{cityState}")]
-        public IEnumerable<string> GetMissingPersonCities(string cityState)
+        [HttpGet, Route("MissingPersonCities/{cityState}")]
+        public Task<IEnumerable<string>> GetMissingPersonCities(string cityState)
         {
             return _ufoService.GetMissingPersonCities(cityState);
         }
     
 
-        [System.Web.Http.HttpGet, System.Web.Http.Route("MissingPersons")]
-        public JsonResult<IEnumerable<MissingPerson>> GetMissingPersons()
+        [HttpGet, Route("MissingPersons")]
+        public async Task<JsonResult<IEnumerable<MissingPerson>>> GetMissingPersons()
         {
-            var missingPersons = _ufoService.GetMissingPersons();
+            var missingPersons = await _ufoService.GetMissingPersons();
             return Json(missingPersons);
         }
 
-        [System.Web.Http.HttpGet, System.Web.Http.Route("MissingPersons/{state}")]
-        public IEnumerable<MissingPerson> GetMissingPersonsByState(string state)
+        [HttpGet, Route("MissingPersons/{state}")]
+        public Task<IEnumerable<MissingPerson>> GetMissingPersonsByState(string state)
         {
             return _ufoService.GetMissingPersonsForCityState(state);
         }
 
-        [System.Web.Http.HttpGet, System.Web.Http.Route("MissingPersons/{state}/{city}")]
-        public IEnumerable<MissingPerson> GetMissingPersonsByCityAndState(string state, string city)
+        [HttpGet, Route("MissingPersons/{state}/{city}")]
+        public Task<IEnumerable<MissingPerson>> GetMissingPersonsByCityAndState(string state, string city)
         {
             return _ufoService.GetMissingPersonsForCity(city, state);
         }

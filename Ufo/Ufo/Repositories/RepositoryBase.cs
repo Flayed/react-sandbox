@@ -1,47 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using Ufo.Services;
 
-namespace Ufo.DbAccess.Repositories
+namespace Ufo.Repositories
 {
-    public abstract class RepositoryBase<T>
-    {
-        private readonly IFileService _fileService;
-        private readonly IJsonSerializationService _jsonSerializationService;
+	public abstract class RepositoryBase<T>
+	{
+		private readonly IJsonSerializationService _jsonSerializationService;
+		private readonly IDataService _dataService;
 
-        protected RepositoryBase(IFileService fileService, IJsonSerializationService jsonSerializationService)
-        {
-            _fileService = fileService;
-            _jsonSerializationService = jsonSerializationService;
-        }
+		protected RepositoryBase(IJsonSerializationService jsonSerializationService, IDataService dataService)
+		{
+			_dataService = dataService;
+			_jsonSerializationService = jsonSerializationService;
+		}
 
-        protected abstract string DataFileName { get; }
+		protected abstract string DataFileName { get; }
 
-        private static readonly object _repositoryLock = new object();
-        private IEnumerable<T> _repository;
-        protected IEnumerable<T> Repository
-        {
-            get
-            {
-                lock (_repositoryLock)
-                {
-                    if (_repository != null) return _repository;
-                    _repository = GetRepository();
-                    return _repository;
-                }
-            }
-        }
+		private IEnumerable<T> _repository;
+		protected async Task<IEnumerable<T>> GetRepository()
+		{
+			if (_repository != null) return _repository;
+			_repository = await GetRepositoryAsync();
+			return _repository;
+		}
 
-        private IEnumerable<T> GetRepository()
-        {
-            string dataFileContents = _fileService.ReadAssetFileContents(DataFileName);
+		private async Task<IEnumerable<T>> GetRepositoryAsync()
+		{
+			string dataFileContents = await _dataService.GetData(DataFileName);
 
-            if (string.IsNullOrWhiteSpace(dataFileContents)) return new List<T>();
+			if (string.IsNullOrWhiteSpace(dataFileContents)) return new List<T>();
 
-            return _jsonSerializationService.Deserialize<IEnumerable<T>>(dataFileContents);
-        }
-    }
+			return _jsonSerializationService.Deserialize<IEnumerable<T>>(dataFileContents);
+		}
+	}
 }

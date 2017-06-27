@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const ufoService = "http://thetruthisoutthere.azurewebsites.net/API/Ufo/";
+//const ufoService = "http://localhost/Ufo/API/Ufo/";
 
 export const types = {
     REQUEST_STATES: 'CITYSTATE/REQUEST_STATES',
